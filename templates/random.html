@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-body-tertiary row justify-content-center rounded-3">
+      <div class="container-fluid col-4 py-5">
+        <h2 class="display-5 fw-bold text-purple">Discover and learn!</h2>
+        <p class="fs-4 py-4 text-purple">Don't know what you want to listen to? <br/>Need a fresh new piece to learn? <br/>Let us choose for you!</p>
+
+          <div class="dropdown py-2">
+            <button class="btn btn-lg btn-dark dropdown-toggle bg-purple" name="epoch" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Select an epoch:
+            </button>
+            <ul class="dropdown-menu">
+                {% for epoch in epochs: %}
+                <li><a class="dropdown-item" href="{{ url_for('random_result', epoch=epoch) }}">{{ epoch }}</a></li>
+                {% endfor %}
+            </ul>
+          </div>
+
+
+      </div>
+      <div class="container-fluid col-6 py-5">
+          {% if is_result: %}
+          <div class="p-4 row border rounded">
+                  <div class="col-6">
+              <h3 class="fw-bold  fst-italic py-2 text-purple">Result: </h3>
+              <p class="fs-4 fst-italic text-purple">Epoch: {{ work.composer.epoch }}</p>
+              <p class="fs-4 fst-italic text-purple">Composer: {{ work.composer.name }}</p>
+              <p class="fs-4 fst-italic text-purple">Work: {{ work.title }}</p>
+                  </div>
+                    <div class="col-6">
+                      <img src="{{ img }}" class="rounded img-fluid"/>
+                    </div>
+          </div>
+          {% else: %}
+          <img src="static/assets/score-hand.jpg" class="rounded img-fluid" alt="piano score"/>
+          {% endif %}
+      </div>
+</div>
+
+{% endblock %}

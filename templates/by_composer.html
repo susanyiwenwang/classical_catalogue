@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-body-tertiary row justify-content-center rounded-3">
+      <div class="container-fluid col-4 py-5">
+        <h3 class="display-5 fw-bold text-purple">Piano repertoire by composer.</h3>
+        <p class="fs-4 py-2 text-purple"><br/>Get a list of solo keyboard works by the composer name.</p>
+          <form action="" method="post">
+            <div class="input-group mb-3 py-2">
+            <input type="text" name="composer" class="form-control text-purple" placeholder="Name of composer">
+            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+</div>
+          </form>
+      </div>
+
+      <div class="container-fluid col-6 py-5">
+          {% if is_submit: %}
+          <div class="p-4 border rounded">
+              <h3 class="fw-bold fst-italic py-2 text-purple">{{ profile.complete_name }}</h3>
+                <ul class="list-group">
+                    {% for work in repertoire: %}
+                   <li class="list-group-item text-purple">{{ work.title }}</li>
+                    {% endfor %}
+                </ul>
+          </div>
+          {% else: %}
+          <img src="static/assets/score-hand.jpg" class="rounded img-fluid" alt="piano score"/>
+          {% endif %}
+      </div>
+</div>
+
+
+{% endblock %}
